@@ -260,19 +260,53 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = true;
         submitBtn.innerHTML = `Sending... <i class="fa-solid fa-spinner fa-spin"></i>`;
         
-        // Simulate API network POST request
-        setTimeout(() => {
-            // Hide Form
-            contactForm.style.opacity = '0';
-            setTimeout(() => {
-                contactForm.style.display = 'none';
-                
-                // Show success block
-                formSuccessPopup.style.display = 'flex';
-                
-                // Clear form fields
-                contactForm.reset();
-            }, 300);
-        }, 1500);
+        const formData = new FormData(contactForm);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let res = await response.json();
+            if (response.status == 200) {
+                // Success animation transition
+                contactForm.style.opacity = '0';
+                setTimeout(() => {
+                    contactForm.style.display = 'none';
+                    formSuccessPopup.style.display = 'flex';
+                    contactForm.reset();
+                    
+                    // Reset to default form view after 5 seconds
+                    setTimeout(() => {
+                        formSuccessPopup.style.display = 'none';
+                        contactForm.style.display = 'flex';
+                        // Re-enable and reset submit button text
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                        // Fade form back in
+                        setTimeout(() => {
+                            contactForm.style.opacity = '1';
+                        }, 50);
+                    }, 5000);
+                }, 300);
+            } else {
+                console.log(response);
+                alert(res.message || "Something went wrong!");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            alert("Form submission failed. Please check your internet connection.");
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+        });
     });
 });
