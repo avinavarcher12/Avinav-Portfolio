@@ -666,15 +666,22 @@ header.scrolled {
 }
 
 /* Hover effects for the portrait components */
-.neon-ring-wrapper:hover .profile-img {
-    transform: scale(1.08) rotate(3deg);
-    filter: brightness(0.95) contrast(1.02);
+.neon-ring-wrapper:hover .profile-frame {
+    animation: pop-bounce 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
 }
 
 .neon-ring-wrapper:hover .glowing-ring,
 .neon-ring-wrapper:hover .glowing-ring-glow {
     animation-duration: 4.8s;
     /* Double the rotation speed (9.6s / 2) on hover! */
+}
+
+@keyframes pop-bounce {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.18); }
+    65%  { transform: scale(1.05); }
+    80%  { transform: scale(1.13); }
+    100% { transform: scale(1.08); }
 }
 
 /* Particle background behind picture */
@@ -756,6 +763,8 @@ header.scrolled {
     position: relative;
     animation: spin-border 4s linear infinite;
     background-size: 200% 200%;
+    perspective: 800px;
+    transform-style: preserve-3d;
 }
 
 .about-photo-frame::after {
@@ -781,9 +790,22 @@ header.scrolled {
     transition: transform 0.4s ease, filter 0.4s ease;
 }
 
+.about-image-card:hover .about-photo-frame {
+    animation: pop-bounce-about 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards,
+               spin-border 4s linear infinite;
+}
+
 .about-image-card:hover .about-photo {
     transform: scale(1.07);
     filter: brightness(1);
+}
+
+@keyframes pop-bounce-about {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.22); }
+    65%  { transform: scale(1.08); }
+    80%  { transform: scale(1.17); }
+    100% { transform: scale(1.12); }
 }
 
 @keyframes spin-border {
