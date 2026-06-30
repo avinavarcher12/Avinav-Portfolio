@@ -1,0 +1,13 @@
+{
+  "name": "avinav-portfolio",
+  "version": "1.0.0",
+  "description": "Personal Portfolio Website for Avinav Acharya",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}
