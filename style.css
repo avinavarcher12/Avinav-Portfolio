@@ -530,8 +530,8 @@ header.scrolled {
 
 .neon-ring-wrapper {
     position: relative;
-    width: 380px;
-    height: 380px;
+    width: 440px;
+    height: 440px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -546,10 +546,11 @@ header.scrolled {
     height: 100%;
     border-radius: 50%;
     background: var(--grad-neon-ring);
-    animation: rotateRing 12s linear infinite;
+    animation: rotateRing 9.6s linear infinite;
     mask: radial-gradient(circle, transparent 66.5%, black 67%);
     -webkit-mask: radial-gradient(circle, transparent 66.5%, black 67%);
     z-index: 2;
+    transition: animation-duration 0.5s ease;
 }
 
 /* Glowing copy behind the ring for high-intensity ambient glow */
@@ -563,8 +564,9 @@ header.scrolled {
     background: var(--grad-neon-ring);
     filter: blur(18px);
     opacity: 0.85;
-    animation: rotateRing 12s linear infinite;
+    animation: rotateRing 9.6s linear infinite;
     z-index: 1;
+    transition: animation-duration 0.5s ease;
 }
 
 @keyframes rotateRing {
@@ -591,9 +593,17 @@ header.scrolled {
     object-fit: cover;
     object-position: center;
     transition: var(--transition-normal);
+    filter: brightness(0.85) contrast(1.02);
 }
-.profile-img:hover {
-    transform: scale(1.05);
+
+/* Hover effects for the portrait components */
+.neon-ring-wrapper:hover .profile-img {
+    transform: scale(1.08) rotate(3deg);
+    filter: brightness(0.95) contrast(1.02);
+}
+.neon-ring-wrapper:hover .glowing-ring,
+.neon-ring-wrapper:hover .glowing-ring-glow {
+    animation-duration: 4.8s; /* Double the rotation speed (9.6s / 2) on hover! */
 }
 
 /* Particle background behind picture */
@@ -1561,8 +1571,8 @@ footer {
         font-size: 3.5rem;
     }
     .neon-ring-wrapper {
-        width: 320px;
-        height: 320px;
+        width: 380px;
+        height: 380px;
     }
     .about-content {
         grid-template-columns: 1fr;
@@ -1618,8 +1628,8 @@ footer {
         order: -1; /* Image appears on top in mobile */
     }
     .neon-ring-wrapper {
-        width: 280px;
-        height: 280px;
+        width: 330px;
+        height: 330px;
     }
     
     .certificate-card {

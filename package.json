@@ -1,6 +1,7 @@
 {
   "name": "avinav-portfolio",
   "version": "1.0.0",
+  "type": "module",
   "description": "Personal Portfolio Website for Avinav Acharya",
   "scripts": {
     "dev": "vite",
