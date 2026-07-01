@@ -478,20 +478,19 @@ header.scrolled {
 }
 
 .name-gradient {
-    background: var(--grad-primary);
+    background: linear-gradient(135deg, #ff3333 0%, #990000 70%, #1a0000 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: pulseGradient 8s ease infinite alternate;
 }
 
 @keyframes pulseGradient {
     0% {
-        filter: hue-rotate(0deg);
+        filter: brightness(1);
     }
 
     100% {
-        filter: hue-rotate(30deg);
+        filter: brightness(0.85);
     }
 }
 
@@ -506,7 +505,7 @@ header.scrolled {
 }
 
 .typewriter-text {
-    background: var(--grad-secondary);
+    background: linear-gradient(135deg, #ff4444 0%, #880000 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
